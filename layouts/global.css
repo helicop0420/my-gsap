@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "DINPro";
+    src: local("DINPro"),
+     url(~assets/font/FontsFree-Net-DINPro-1.ttf) format("truetype");
+}
+
+html {
+    font-family: "DINPro";
+}
