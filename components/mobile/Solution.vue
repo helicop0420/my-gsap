@@ -146,7 +146,7 @@
                 start: 'center center',
                 scrub: true,
                 pin: true,
-                end: '+=4000'
+                end: '+=1000'
             }
         })
         .add('lottie')

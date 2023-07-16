@@ -3,7 +3,7 @@
 		
 		<div class="cross-container">
 			<div class="cross-right" style="width: 100%; position: relative;">
-				<div class="fix-cross" style="position: relative; height: calc(100vh - 75px);">
+				<div class="fix-cross" style="position: relative;">
 					<div class="cross-body">
 						<div class="cross-right-1 cross-right-item" style="position: relative;">
 							<div class="cross-dilator">
@@ -16,26 +16,26 @@
 	
 						<div class="cross-right-2 cross-right-item" style="position: relative;">
 							<div class="cross-support">
-								<img src="../../assets/img/cross/Braided support Cath X2.png" style="position: absolute; top: 50%;  transform: translate(63px, -50%); height: 80px;" />
+								<img src="../../assets/img/cross/Braided support Cath X2.png" style="position: absolute; top: 44%;  transform: translate(63px, -50%); height: 80px;" />
 							</div>
 						</div>
 	
 						<div class="cross-right-3 cross-right-item flex items-center" style="background-color: #EF5923;">
-							<div class="cross-support-2" style="height: 100%; position: relative;">
-								<video id="cross-video" src="../../assets/video/cross-video.mp4" style="width;: 100%" muted="true"></video>
+							<div class="cross-support-2" style="height: 100%; width: 100%; position: relative;">
+								<video id="cross-video" src="../../assets/video/cross-video.mp4" style="position: absolute; top: 18%;" muted="true"></video>
 							</div>
 						</div>
 						<div class="cross-right-4 cross-right-item" style="position: relative;">
 							<div style="height: 100vh; position: absolute; width: 100%; background-color: white;"></div>
 							<div class="cross-curved" style="position: absolute; width: 100%;">
 								<div class="flex justify-end items-center">
-									<img src="../../assets/img/cross/curved.jpg" style="margin-right: -45vw; max-width: 146vw;"/>
+									<img src="../../assets/img/cross/curved.jpg" style="margin-right: -45vw; max-width: 146vw; margin-top: 80px;"/>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="px-6 pt-6 pb-24 cross-right-footer" style="background-color: #FDF1E9; position: absolute; bottom: 0; left: 0; right: 0; height: 20vh;">
+					<div id="cross-footer" class="px-6 pt-6 pb-24 cross-right-footer" style="background-color: #FDF1E9; position: fixed; top: 80vh; left: 0; right: 0; height: 20vh;">
 						<div class="right-1-footer">
 							<p class="cross-content" style="font-weight: bold; color: #8d8a89;">Easy-to-use Lock Grip</p>
 							<p style="font-size: 20px; line-height: 22px; color: #928e8d;">Seals and secures for accurate<br> positioning of Oscar Dilator,</p>
@@ -103,15 +103,18 @@
 </template>
   
 <style scoped>
-	.cross-dilator {
+	#cross-footer {
+		opacity: 0;
+	}
+	/* .cross-dilator {
 		position: absolute;
 		top: 100vh;
-	}
+	} */
 	.color-gray {
 		color: #6E6E6E;
 	}
 	.cross-right-item {
-		height: calc(100vh - 75px);	
+		height: 100vh;	
 	}
 	.cross-left {
 		position: relative;
@@ -238,33 +241,123 @@
 
 
 		let corssVideo = document.getElementById('cross-video')
-	
+
 		gsap.timeline({
 			scrollTrigger: {
-				trigger: '.fix-cross',
-				start: 'bottom bottom',
-				end: '+=3800',
+				trigger: '.cross-right-1',
+				start: 'top bottom',
+				end: 'top top',
 				scrub: true,
-				pin: true
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
 			}
 		})
-		.to(".cross-dilator", { top: 0, duration: 6})
+		.to('#cross-footer', {opacity: 1})
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: '.cross-right-2',
+				start: 'top bottom',
+				end: 'top top',
+				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				},
+			}
+		})
 		.add('cross-first')
-		.to('.cross-body', {y: '-100vh', duration: 2, ease: "power2.in"}, 'cross-first')
-		.to('.right-1-footer', {opacity:0, duration: 2}, 'cross-first')
-		.to('.right-2-footer', {opacity: 1, duration: 2}, 'cross-first')
+		.to('.right-1-footer', {opacity:0, delay: 2, duration: 1}, 'cross-first')
+		.to('.right-2-footer', {opacity: 1, delay: 2, duration: 2}, 'cross-first')
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: '.cross-right-3',
+				start: 'top bottom',
+				end: 'top top',
+				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
+			}
+		})
 		.add('cross-second')
-		.to('.cross-body', {y: '-170vh', duration: 2, ease: "power2.in", onComplete: function(){
+		.to('.right-2-footer', {opacity:0, delay: 2, duration: 1,  onComplete: function(){
 			corssVideo.muted = true;
 			corssVideo.play()
-		} }, 'cross-second')
-		.to('.right-2-footer', {opacity:0, duration: 2}, 'cross-second')
-		.to('.right-3-footer', {opacity: 1, duration: 2}, 'cross-second')
+		}}, 'cross-second')
+		.to('.right-3-footer', {opacity: 1, delay: 2, duration: 2}, 'cross-second')
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: '.cross-right-4',
+				start: 'top bottom',
+				end: 'top top',
+				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
+			}
+		})
 		.add('cross-third')
-		.to('.cross-body', {y: '-300vh', duration: 2, ease: "power2.in"}, 'cross-third')
-		.to('.right-3-footer', {opacity:0, duration: 2}, 'cross-third')
-		.to('.right-4-footer', {opacity: 1, duration: 2}, 'cross-third')
-		.to('.cross-right-footer', {backgroundColor: 'white'}, 'cross-third')
+		.to('.right-3-footer', {opacity:0, delay: 2, duration: 1}, 'cross-third')
+		.to('.right-4-footer', {opacity: 1, delay: 2, duration: 2}, 'cross-third')
+		.to('#cross-footer', {backgroundColor: 'white'}, 'cross-third')
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: '.cross-right-5',
+				start: 'top bottom',
+				end: 'top top',
+				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
+			}
+		})
+		.to('#cross-footer', {y: '-100vh', duration: 6})
+	
+		// gsap.timeline({
+		// 	scrollTrigger: {
+		// 		trigger: '.fix-cross',
+		// 		start: 'bottom bottom',
+		// 		end: '+=3800',
+		// 		scrub: true,
+		// 		pin: true
+		// 	}
+		// })
+		// .to(".cross-dilator", { top: 0, duration: 6})
+		// .add('cross-first')
+		// .to('.cross-body', {y: '-100vh', duration: 2, ease: "power2.in"}, 'cross-first')
+		// .to('.right-1-footer', {opacity:0, duration: 2}, 'cross-first')
+		// .to('.right-2-footer', {opacity: 1, duration: 2}, 'cross-first')
+		// .add('cross-second')
+		// .to('.cross-body', {y: '-170vh', duration: 2, ease: "power2.in", onComplete: function(){
+		// 	corssVideo.muted = true;
+		// 	corssVideo.play()
+		// } }, 'cross-second')
+		// .to('.right-2-footer', {opacity:0, duration: 2}, 'cross-second')
+		// .to('.right-3-footer', {opacity: 1, duration: 2}, 'cross-second')
+		// .add('cross-third')
+		// .to('.cross-body', {y: '-300vh', duration: 2, ease: "power2.in"}, 'cross-third')
+		// .to('.right-3-footer', {opacity:0, duration: 2}, 'cross-third')
+		// .to('.right-4-footer', {opacity: 1, duration: 2}, 'cross-third')
+		// .to('.cross-right-footer', {backgroundColor: 'white'}, 'cross-third')
 
 		gsap.timeline({
 			scrollTrigger: {

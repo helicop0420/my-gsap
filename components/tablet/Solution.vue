@@ -162,18 +162,20 @@
                 start: 'center center',
                 scrub: true,
                 pin: true,
-                end: '+=4000'
+                end: '+=1000'
             }
         })
         .add('lottie')
         .to(playhead, {
             frame: 58,
+            duration: 3,
             onUpdate: (a,b,c) => {
                 animation3.goToAndStop(playhead.frame, true)
             },
         },'lottie')
         .to(playhead1, {
             frame: 59,
+            duration: 3,
             onUpdate: (a,b,c) => {
                 animation2.goToAndStop(playhead1.frame, true)
             },

@@ -199,26 +199,6 @@
     components: {
     },
     methods: {
-        goToSection (top) {
-        let observer = ScrollTrigger.normalizeScroll(true);
-        console.log('goTo', top);
-        this.scrollTween = gsap.to(window, {
-            scrollTo: {y: top, autoKill: false},
-            ease: "strong.inOut",
-            duration: 1,
-            onStart: () => {
-            observer.disable(); // for touch devices, as soon as we start forcing scroll it should stop any current touch-scrolling, so we just disable() and enable() the normalizeScroll observer
-            observer.enable();
-            },
-            onComplete: () => this.scrollTween = null,
-            overwrite: true
-        });
-        },
-        getTopPosition (el, idx) {
-            // return (idx - 1) * window.innerHeight;
-            // if (el.parentElement.classList.contains('pin-spacer')) return el.parentElement.getBoundingClientRect().top + window.scrollY;
-            return el.getBoundingClientRect().top + window.scrollY;
-        },
     }
     
   };

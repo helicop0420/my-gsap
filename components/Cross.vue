@@ -9,7 +9,7 @@
 				</div> -->
 			</div>
 			<div class="cross-right" style="width: 60%;">
-				<div class="cross-right-1 cross-right-item">
+				<div id="cross-right-1" class="cross-right-1 cross-right-item">
 					<div class="cross-dilator">
 						<div style="display: table;">
 							<p class="text-white cross-header">Support Catheter + Dilator</p>
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="cross-right-2 cross-right-item flex items-center">
+				<div id="cross-right-2" class="cross-right-2 cross-right-item flex items-center">
 					<div class="cross-support">
 						<img src="../assets/img/cross/Braided support Cath X2.png" style="padding-left: 20px; height: 200px;" />
 						<div class="flex justify-center items-center mt-20" style="padding-left: 30%;">
@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="cross-right-4" style="position: relative; min-height: 100vh; padding-bottom: 30px;">
+				<div class="cross-right-4" style="position: relative; padding-top: 80px; min-height: 100vh; padding-bottom: 30px;">
 					<div class="cross-curved" style="width: 100%;">
 						<div class="flex justify-end items-center">
 							<img src="../assets/img/cross/curved.jpg" style="width: 80%; max-width: 758px;"/>
@@ -120,6 +120,13 @@
 	.cross-right-item {
 		height: 100vh;	
 	}
+	/* .cross-right {
+		overflow-y: scroll;
+		height: 100vh;
+		scroll-snap-type: mandatory;
+		scroll-snap-points-y: repeat(100vh);
+		scroll-snap-type: y mandatory;
+	} */
 	.cross-left {
 		position: relative;
 	}
@@ -229,7 +236,23 @@
                 path: 'https://assets9.lottiefiles.com/packages/lf20_rJzvFizMU4.json'
             });
 
+			// gsap.timeline({
+			// 	scrollTrigger: {
+			// 		trigger: ".cross-right",
+			// 		start: "center 50%",
+			// 		end: "bottom top",
+ 			// 		scrub: 1,
+			// 		snap: {
+			// 			snapTo: 0.2,
+			// 			duration: 0.02,
+			// 			ease: "power1.inOut"
+			// 		},
+			// 		pin: true
+			// 	}
+			// });
+
 		let corssVideo = document.getElementById('cross-video')
+
 		gsap.timeline({
 			scrollTrigger: {
 			trigger: '.cross-right-1',
@@ -237,12 +260,39 @@
 			end: '+=3000',
 			scrub: true,
 			pin: true,
+			snap: {
+				snapTo: 1, // snap to the closest label in the timeline
+				duration: 0.8, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+				delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+				ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+			}
 			// ease: gsap.Power3.easeOut
 			}
 		})
 		.add('move')
 		.to(".cross-section1", {top: 0, delay:2, duration: 2, ease:"power2.out"}, "move")
   		.to(".cross-dilator", { top: 0, delay:2, duration: 2, ease:"power2.out"}, "move")
+
+		// setTimeout(() => {
+			
+		// 	ScrollTrigger.create({
+		// 		trigger: '.cross-right-2',
+		// 		start: "top bottom",
+		// 		onEnter: () => {
+		// 			gsap.to(window, {
+		// 				scrollTo: { y: '#cross-right-2', offsetY: 0, ease: "Power3.easeInOut" },
+		// 				duration: 0.85
+		// 			});
+		// 		}
+		// 	});
+	
+		// 	ScrollTrigger.create({
+		// 		trigger: '.cross-right-2',
+		// 		start: "bottom bottom",
+		// 		onEnterBack: () => this.goToSection(1)
+		// 	});
+		// }, 10000);
+
      
 		gsap.timeline({
 			scrollTrigger: {
@@ -250,7 +300,12 @@
 				start: 'top bottom',
 				end: 'top top',
 				scrub: true,
-				// ease: gsap.Power3.easeOut
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
 			}
 		})
 		.add("dialtor-move-1")
@@ -259,13 +314,13 @@
 			corssVideo.play();
 		} }, "dialtor-move-1")
 
+		
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: '.cross-right-2',
 				start: 'top center',
 				end: 'top top',
 				scrub: true,
-				// ease: gsap.Power3.easeOut
 			}
 		})
 		.add("dialtor-move-1")
@@ -279,6 +334,12 @@
 				start: 'top bottom',
 				end: 'top top',
 				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
 			}
 		})
 		.add("dialtor-move-2")
@@ -302,6 +363,12 @@
 				start: 'top bottom',
 				end: 'top top',
 				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
 			}
 		})
 		.add("dialtor-move-3")
@@ -318,6 +385,21 @@
 		.add("dialtor-move-3")
 		.to(".cross-curved", {opacity: 1, duration: 3}, "dialtor-move-3")
 		.to(".cross-left-dilator", {bottom: '-30vh', duration: 3}, "dialtor-move-3")
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: '.cross-right-5',
+				start: 'top bottom',
+				end: 'top top',
+				scrub: true,
+				snap: {
+					snapTo: 1, // snap to the closest label in the timeline
+					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
+					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				}
+			}
+		})
 
 
 		gsap.timeline({
@@ -344,7 +426,13 @@
   
     },
     methods: {
-     
+		goToSection(i) {
+			console.log('hahaha')
+			gsap.to(window, {
+				scrollTo: { y: '#cross-right-2', offsetY: 0, ease: "Power3.easeInOut" },
+				duration: 0.85
+			});
+		}
      
     }
   
