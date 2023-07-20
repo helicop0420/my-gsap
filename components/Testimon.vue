@@ -71,8 +71,8 @@
 	color: white;
 	padding-left: 10vw;
 	padding-right: 10vw;
-	padding-top: 30px;
-	padding-bottom: 50px;
+	padding-top: 80px;
+	padding-bottom: 120px;
 }
 
 .carousel-video {
@@ -260,17 +260,34 @@
   
     data() {
       return {
-				options: {
-					// infinite: true,
-					slidesToShow: 3,
-					dots: false,
-					centerMode: false
-				},
-				videoNo: 0
+		scrolling : {
+			enabled: true,
+			events: "scroll,wheel,touchmove,pointermove".split(","),
+			prevent: e => e.preventDefault(),			
+		},
+		options: {
+			// infinite: true,
+			slidesToShow: 3,
+			dots: false,
+			centerMode: false
+		},
+		videoNo: 0
       };
     },
+	computed:{
+		isNavClicked(){
+			return this.$store.state.isNavClicked
+		},
+	},
     mounted() {			
-		// this.onYouTubeIframeAPIReady()
+		const section = gsap.utils.toArray('#test-wrapper')[0]
+			ScrollTrigger.create({
+				trigger: section,
+				start: "top bottom-=1",
+				end: "bottom top+=1",
+				onEnter: () => this.goToSection(section),
+				onEnterBack: () => this.goToSection(section)
+			});
 	},
 
 	methods: {
@@ -286,20 +303,32 @@
 			this.videoNo = no;
 		},
 
-		// onYouTubeIframeAPIReady() {
-    	// 	// Create an instance of the YouTube player
-		// 	new YT.Player('player', {
-		// 		videoId: '0MqLI3B4fs4', // Replace with your video ID
-		// 		events: {
-		// 			// Handle video click event
-		// 			onReady: function(event) {
-		// 			event.target.getIframe().addEventListener('click', function() {
-		// 				onClickVideo(event, 2);
-		// 			});
-		// 			}
-		// 		}
-		// 	})
-		// }
+		goToSection(section, anim, i) {
+			if (this.scrolling.enabled && !this.isNavClicked) { // skip if a scroll tween is in progress
+				this.disable();
+				gsap.to(window, {
+					scrollTo: {y: section, autoKill: false},
+					onComplete: this.enable,
+					duration: 1
+				});
+
+				// anim && anim.restart();
+			}
+		},
+		disable() {
+			if (this.scrolling.enabled) {
+				this.scrolling.enabled = false;
+				window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+				this.scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, this.scrolling.prevent, {passive: false}));
+			}
+		},
+		enable() {
+			if (!this.scrolling.enabled) {
+				this.scrolling.enabled = true;
+				window.removeEventListener("scroll", gsap.ticker.tick);
+				this.scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, this.scrolling.prevent));
+			}
+		}
 	}
   };
   

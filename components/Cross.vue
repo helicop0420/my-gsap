@@ -3,13 +3,13 @@
 		
 		<div class="cross-container">
 			<div class="flex justify-center cross-left" style="background-color: #F7AF8E; width: 40%;">
-				<!-- <div class="cross-section1" id="cross-section1">
+				<div class="cross-section2" id="cross-section2">
 					<img src="../assets/img/cross/Lock_grip_2_new.png" id="verticalBiotronik" class="cross-left-dilator-body"/>
 					<img src="../assets/img/cross/Dilator.png" class="cross-left-dilator"/>
-				</div> -->
+				</div>
 			</div>
 			<div class="cross-right" style="width: 60%;">
-				<div id="cross-right-1" class="cross-right-1 cross-right-item">
+				<div id="cross-right-1" class="cross-right-1 cross-right-item right-section">
 					<div class="cross-dilator">
 						<div style="display: table;">
 							<p class="text-white cross-header">Support Catheter + Dilator</p>
@@ -25,21 +25,23 @@
 						</div>
 					</div>
 				</div>
-				<div id="cross-right-2" class="cross-right-2 cross-right-item flex items-center">
-					<div class="cross-support">
-						<img src="../assets/img/cross/Braided support Cath X2.png" style="padding-left: 20px; height: 200px;" />
-						<div class="flex justify-center items-center mt-20" style="padding-left: 30%;">
-							<div>
-								<p class="text-white" style="font-weight: bold; font-size: 50px; line-height: 50px;">Cross</p>
-								<p class="text-white" style="font-weight: bold; font-size: 35px; line-height: 40px;">Braided Support Catheter</p>
-								<p class="text-white" style="font-weight: bold; font-size: 35px; line-height: 40px;">and Extendable Dilator</p>
-								<p class="text-white" style="font-size: 35px;line-height: 40px;">Position 0:</p>
-								<p class="text-white" style="font-size: 35px;line-height: 40px;">Strongest support level</p>
+				<div id="cross-right-2" class="cross-right-2 cross-right-item right-section" style="padding-top: 75px;">
+					<div class="flex items-center h-full">
+						<div class="cross-support">
+							<img src="../assets/img/cross/Braided support Cath X2.png" style="padding-left: 20px; height: 200px;" />
+							<div class="flex justify-center items-center mt-20" style="padding-left: 30%;">
+								<div>
+									<p class="text-white" style="font-weight: bold; font-size: 50px; line-height: 50px;">Cross</p>
+									<p class="text-white" style="font-weight: bold; font-size: 35px; line-height: 40px;">Braided Support Catheter</p>
+									<p class="text-white" style="font-weight: bold; font-size: 35px; line-height: 40px;">and Extendable Dilator</p>
+									<p class="text-white" style="font-size: 35px;line-height: 40px;">Position 0:</p>
+									<p class="text-white" style="font-size: 35px;line-height: 40px;">Strongest support level</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="cross-right-3 cross-right-item flex items-center">
+				<div class="cross-right-3 cross-right-item right-section flex items-center">
 					<div class="cross-support-2" style="height: 100%; position: relative;">
 						<!-- <img src="../assets/img/cross/Braided support Cath X2.png" style="padding-left: 20px; height: 200px;" /> -->
 						<video id="cross-video" src="../assets/video/cross-video-desktop.mp4" style="width;: 100%" muted="true"></video>
@@ -55,18 +57,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="cross-right-4" style="position: relative; padding-top: 80px; min-height: 100vh; padding-bottom: 30px;">
+				<div class="cross-right-4 right-section" style="position: relative; padding-top: 80px; min-height: 100vh; padding-bottom: 30px;">
 					<div class="cross-curved" style="width: 100%;">
 						<div class="flex justify-end items-center">
-							<img src="../assets/img/cross/curved.jpg" style="width: 80%; max-width: 758px;"/>
+							<img src="../assets/img/cross/curved.jpg" style="width: 80%; max-width: 758px; max-height: 57vh;"/>
 						</div>
 						<div class="flex justify-start items-center" style="padding-left: 100px;">
 							<div>
-								<p class="font-orange font-bold text-[50px]" style="font-weight: bold; font-size: 50px; line-height: 50px;">Cross</p>
-								<p class="font-grey" style="font-weight: bold; font-size: 35px; line-height: 40px;">Extended Dilator</p>
-								<p class="font-grey" style="font-size: 35px;line-height: 40px;">Position Max Flex:</p>
-								<p class="font-grey" style="font-size: 35px;line-height: 40px;">Most flexible support level</p>
-								<p class="font-grey" style="font-size: 35px;line-height: 40px;">with fully extended dilator</p>
+								<p class="font-orange font-bold text-[50px]" style="font-weight: bold; font-size: 40px; line-height: 45px;">Cross</p>
+								<p class="font-grey" style="font-weight: bold; font-size: 35px; line-height: 38px;">Extended Dilator</p>
+								<p class="font-grey cross-4-content" >Position Max Flex:</p>
+								<p class="font-grey cross-4-content" >Most flexible support level</p>
+								<p class="font-grey cross-4-content" >with fully extended dilator</p>
 							</div>
 						</div>
 						<div class="flex justify-end mt-6" style="padding-right: 40px;">
@@ -74,7 +76,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="cross-right-5 cross-right-item p-4 color-gray" style="padding-top: 100px;">
+				<div class="cross-right-5 cross-right-item right-section p-4 color-gray" style="padding-top: 100px;">
 					<p class="font-orange" style="font-size: 36px; border-top: 2px solid #ED6C23; display: table;"><b>Achieve the pushability of an 0.035"</b></p>
 					<p class="font-orange" style="font-size: 36px;"><b>system on an 0.018" platform*</b></p>
 					<div style="margin-top: 70px;">
@@ -120,6 +122,10 @@
 	.cross-right-item {
 		height: 100vh;	
 	}
+	.cross-4-content {
+		font-size: 30px;
+		line-height: 33px;
+	}
 	/* .cross-right {
 		overflow-y: scroll;
 		height: 100vh;
@@ -130,13 +136,13 @@
 	.cross-left {
 		position: relative;
 	}
-	.cross-section1 {
-		position: fixed;
-		top: 100vh;
+	.cross-section2 {
+		position: absolute;
+		top: 0;
 		height: 140vh;
 		z-index: 200;
 		left: 0;
-		right: 60%;
+		right: 0;
 	}
 	.cross-left-dilator-body {
 		height: 140vh;
@@ -176,8 +182,6 @@
 	}
 
 	.cross-dilator {
-		position: absolute;
-		top: 100vh;
 	}
 
 	.cross-right-1 {
@@ -205,6 +209,9 @@
 	.cross-support, .cross-support-2, .cross-curved {
 		opacity: 0;
 	}
+	.cross-support {
+		padding-bottom: 60px;
+	}
 </style>
   
 <script>
@@ -223,9 +230,19 @@
       return {
        
         loading: false,
-        loaded: false
+        loaded: false,
+		scrolling : {
+			enabled: true,
+			events: "scroll,wheel,touchmove,pointermove".split(","),
+			prevent: e => e.preventDefault(),			
+		}
       };
     },
+	computed:{
+		isNavClicked(){
+			return this.$store.state.isNavClicked
+		},
+	},
     mounted() {
 		let playhead = {frame: 0}
 		const animation3 = lottie.loadAnimation({
@@ -236,82 +253,39 @@
                 path: 'https://assets9.lottiefiles.com/packages/lf20_rJzvFizMU4.json'
             });
 
-			// gsap.timeline({
-			// 	scrollTrigger: {
-			// 		trigger: ".cross-right",
-			// 		start: "center 50%",
-			// 		end: "bottom top",
- 			// 		scrub: 1,
-			// 		snap: {
-			// 			snapTo: 0.2,
-			// 			duration: 0.02,
-			// 			ease: "power1.inOut"
-			// 		},
-			// 		pin: true
-			// 	}
-			// });
+		const sections = gsap.utils.toArray('.right-section')
+		console.log('sections', sections)
+
+		sections.forEach((section, i) => {
+			// const intoAnim = gsap.from(section.querySelector(".right-col"), {yPercent: 50, duration: 1, paused: true});
+			console.log('section', section)
+			ScrollTrigger.create({
+				trigger: section,
+				start: "top bottom-=1",
+				end: "bottom top+=1",
+				onEnter: () => this.goToSection(section),
+				onEnterBack: () => this.goToSection(section)
+			});
+		});
 
 		let corssVideo = document.getElementById('cross-video')
 
-		gsap.timeline({
-			scrollTrigger: {
-			trigger: '.cross-right-1',
-			start: 'top top',
-			end: '+=3000',
-			scrub: true,
-			pin: true,
-			snap: {
-				snapTo: 1, // snap to the closest label in the timeline
-				duration: 0.8, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-				delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
-				ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
-			}
-			// ease: gsap.Power3.easeOut
-			}
-		})
-		.add('move')
-		.to(".cross-section1", {top: 0, delay:2, duration: 2, ease:"power2.out"}, "move")
-  		.to(".cross-dilator", { top: 0, delay:2, duration: 2, ease:"power2.out"}, "move")
-
-		// setTimeout(() => {
-			
-		// 	ScrollTrigger.create({
-		// 		trigger: '.cross-right-2',
-		// 		start: "top bottom",
-		// 		onEnter: () => {
-		// 			gsap.to(window, {
-		// 				scrollTo: { y: '#cross-right-2', offsetY: 0, ease: "Power3.easeInOut" },
-		// 				duration: 0.85
-		// 			});
-		// 		}
-		// 	});
-	
-		// 	ScrollTrigger.create({
-		// 		trigger: '.cross-right-2',
-		// 		start: "bottom bottom",
-		// 		onEnterBack: () => this.goToSection(1)
-		// 	});
-		// }, 10000);
-
-     
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: '.cross-right-2',
 				start: 'top bottom',
 				end: 'top top',
 				scrub: true,
-				snap: {
-					snapTo: 1, // snap to the closest label in the timeline
-					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
-					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
-				}
 			}
 		})
+		.to(".cross-section1", {opacity: 1, duration: 0.1}, "replace-dialtor")
+		.to(".cross-section2", {opacity: 0, duration: 0.1}, "replace-dialtor")
 		.add("dialtor-move-1")
 		.to(".cross-section1", {top: '-100vh', duration: 3, onComplete: function(){
-			corssVideo.muted = true;
-			corssVideo.play();
+			setTimeout(() => {
+				corssVideo.muted = true;
+				corssVideo.play();
+			}, 1000);
 		} }, "dialtor-move-1")
 
 		
@@ -334,12 +308,6 @@
 				start: 'top bottom',
 				end: 'top top',
 				scrub: true,
-				snap: {
-					snapTo: 1, // snap to the closest label in the timeline
-					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
-					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
-				}
 			}
 		})
 		.add("dialtor-move-2")
@@ -363,12 +331,6 @@
 				start: 'top bottom',
 				end: 'top top',
 				scrub: true,
-				snap: {
-					snapTo: 1, // snap to the closest label in the timeline
-					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
-					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
-				}
 			}
 		})
 		.add("dialtor-move-3")
@@ -389,36 +351,14 @@
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: '.cross-right-5',
-				start: 'top bottom',
-				end: 'top top',
+				start: 'top 10%',
+				end: 'bottom top',
 				scrub: true,
-				snap: {
-					snapTo: 1, // snap to the closest label in the timeline
-					duration: 0.3, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-					delay: 0.05, // wait 0.2 seconds from the last scroll event before doing the snapping
-					ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+				onEnter: () => {
+					animation3.play()
 				}
 			}
 		})
-
-
-		gsap.timeline({
-			scrollTrigger: {
-				trigger: '.cross-right-5',
-				start: 'top top',
-				end: '+=3000',
-				scrub: true,
-				pin: true
-			}
-		})
-		.to(playhead, {
-            frame: 148,
-            ease: "power2.in",
-			duration: 3,
-            onUpdate: (a,b,c) => {
-                animation3.goToAndStop(playhead.frame, true)
-            },
-        })
 		.to(".cross-section1", {top: '-200vh', duration: 1})
     },
     
@@ -426,14 +366,32 @@
   
     },
     methods: {
-		goToSection(i) {
-			console.log('hahaha')
-			gsap.to(window, {
-				scrollTo: { y: '#cross-right-2', offsetY: 0, ease: "Power3.easeInOut" },
-				duration: 0.85
-			});
+		goToSection(section, anim, i) {
+			if (this.scrolling.enabled && !this.isNavClicked) { // skip if a scroll tween is in progress
+				this.disable();
+				gsap.to(window, {
+					scrollTo: {y: section, autoKill: false},
+					onComplete: this.enable,
+					duration: 1
+				});
+
+				// anim && anim.restart();
+			}
+		},
+		disable() {
+			if (this.scrolling.enabled) {
+				this.scrolling.enabled = false;
+				window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+				this.scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, this.scrolling.prevent, {passive: false}));
+			}
+		},
+		enable() {
+			if (!this.scrolling.enabled) {
+				this.scrolling.enabled = true;
+				window.removeEventListener("scroll", gsap.ticker.tick);
+				this.scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, this.scrolling.prevent));
+			}
 		}
-     
     }
   
     

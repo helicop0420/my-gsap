@@ -1,21 +1,21 @@
 <template>
   <div>
-    <div id="loading-scene" class="loading-scene">
+    <!-- <div id="loading-scene" class="loading-scene">
       <img src="../assets/img/loading.gif" />
-    </div>
+    </div> -->
     <div class="cross-section1" id="cross-section1">
       <img src="../assets/img/cross/Lock_grip_2_new.png" id="verticalBiotronik" class="cross-left-dilator-body"/>
       <img src="../assets/img/cross/Dilator.png" class="cross-left-dilator"/>
     </div>
     <the-header />
-    <as-scroll>
+    <!-- <as-scroll> -->
       <div class="leading-normal tracking-normal text-black gradient">
         <div style="min-height: 100vh">
           <nuxt />
         </div>
         <!-- <the-footer /> -->
       </div>
-    </as-scroll>
+    <!-- </as-scroll> -->
   </div>
 </template>
 
@@ -79,12 +79,14 @@ html {
 
 .cross-section1 {
 		position: fixed;
-		top: 100vh;
+		top: 0;
 		height: 140vh;
 		z-index: 200;
 		left: 0;
 		right: 60%;
+    opacity: 0;
 }
+
 .cross-left-dilator-body {
   height: 140vh;
   position: absolute;

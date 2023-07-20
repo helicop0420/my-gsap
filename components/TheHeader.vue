@@ -133,14 +133,19 @@ export default {
   methods: {
     closeContactModal(id) {
       this.$store.dispatch('toggleContactModal', false)
+      // window.scrollBy(0, document.getElementById('restore-wrapper').offsetTop)
+      this.$store.dispatch('setNavClicked', true)
       gsap.to(window, {
         duration: 1,
         scrollTo: { y: "#" + id, offsetY: 0 }
-      });
+      }).then(()=> {
+        this.$store.dispatch('setNavClicked', false)
+      })
     },
     closeTabletContactModal(id) {
       this.isOpen=false
       document.getElementById('mobile-navbar').style.display='none'
+      window.scrollBy(0, document.getElementById('restore-wrapper').offsetTop)
       gsap.to(window, {
         duration: 1,
         scrollTo: { y: "#" + id, offsetY: 0 }
@@ -157,16 +162,16 @@ export default {
   },
   mounted() {
     document.getElementById('mobile-navbar').style.display='none'
-    ScrollTrigger.addEventListener("refresh", () => document.body.style.removeProperty("overflow-y"));
-    ScrollTrigger.create({
-      trigger: ".scrollpanels",
-      start: "top top-=0",
-      endTrigger: ".scrollpanels-content",
-      end: "9999999",
-      pin: true,
-      pinSpacing: false,
-      scrub: 1
-    });
+    // ScrollTrigger.addEventListener("refresh", () => document.body.style.removeProperty("overflow-y"));
+    // ScrollTrigger.create({
+    //   trigger: ".scrollpanels",
+    //   start: "top top-=0",
+    //   endTrigger: ".scrollpanels-content",
+    //   end: "9999999",
+    //   pin: true,
+    //   pinSpacing: false,
+    //   scrub: 1
+    // });
 
     
 

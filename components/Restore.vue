@@ -1,6 +1,9 @@
 <template>
+	<div>
+
+	
 	<div class="restore-wrapper" id="restore-wrapper">
-		<div class="world-section">
+		<div class="world-section" id="world-section">
 			<h1>A Real-World User Evaluation </h1>
 			<div class="grid grid-cols-2 gap-4 align-stretch">
 				<div class="world-item world-left col-span-1">
@@ -62,7 +65,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="achieve-section">
+		<div class="achieve-section" id="achieve-section">
 			<h1>Achieve the pushability of an 0.035" system on an 0.018" platform</h1>
 			<div class="grid grid-cols-4 gap-4 mb-12">
 				<div class="col-span-2">
@@ -107,32 +110,33 @@
 			
 
 		</div>
-		<div class="meet-section">
-			<img src="../assets/img/restore/left-balloon.png" alt="" class="meet-left" />
-			<div class="meet-right">
-				<h1>Meet Oscar</h1>
-				<p>
-				The all-in-one solution to reach,<br/>
-				cross and prepare lesions<sup style="font-size: 24px;">1</sup>
-				</p>
-				<div class="meet-solution">
-					<img src="../assets/img/restore/solution.png" class="meet-solution-image"/>
-					<div class="mask"></div>
-					<button class="meet-button">Watch the video</button>
-				</div>
-				<button class="btn-brochure">View the brochure</button>
+	</div>
+	<div id="meet-section" class="meet-section">
+		<img src="../assets/img/restore/left-balloon.png" alt="" class="meet-left" />
+		<div class="meet-right">
+			<h1>Meet Oscar</h1>
+			<p>
+			The all-in-one solution to reach,<br/>
+			cross and prepare lesions<sup style="font-size: 24px;">1</sup>
+			</p>
+			<div class="meet-solution">
+				<img src="../assets/img/restore/solution.png" class="meet-solution-image"/>
+				<div class="mask"></div>
+				<button class="meet-button">Watch the video</button>
 			</div>
+			<button class="btn-brochure">View the brochure</button>
 		</div>
 	</div>
+</div>
 </template>
   
 <style scoped>
 	.restore-wrapper {
 		background-color: #EF5923;
-		padding-top: 15vh;
 		padding-bottom: 15vh;
 	}
 	.world-section {
+		padding-top: 15vh;
 		width: 80vw;
 		margin-left: 10vw;
 		margin-bottom: 20px;
@@ -197,6 +201,7 @@
 		background-color: #EF5923;
 		height: 100vh;
 		margin-top: 40px;
+		padding-top: 80px;
 	}
 	.meet-left {
 		position: absolute;
@@ -271,14 +276,26 @@
   
     data() {
       return {
+		scrolling : {
+			enabled: true,
+			events: "scroll,wheel,touchmove,pointermove".split(","),
+			prevent: e => e.preventDefault(),			
+		}
       };
     },
+	computed:{
+		isNavClicked(){
+			return this.$store.state.isNavClicked
+		},
+	},
     mounted() {			
 			let playhead = {frame: 0}
 			let playhead1 = {frame: 0}
 			let playhead2 = {frame: 0}
 			const selft = this;
 			const {restore1, restore2, restore3, restoreChart6, restoreChart7, restoreChart8} = this.$refs;
+
+			
 
 			const animation1 = lottie.loadAnimation({
                 container: gsap.utils.toArray("#restore1")[0],
@@ -331,7 +348,7 @@
 			gsap.timeline({
 				scrollTrigger: {
 					trigger: '.world-section',
-					start: 'center center',
+					start: 'top top',
 					end: '+=3000',
 					scrub: true,
 					pin: true
@@ -361,29 +378,43 @@
 			gsap.timeline({
 				scrollTrigger: {
 					trigger: '.achieve-section',
-					start: 'center center',
+					start: 'top 30%',
 					scrub: true,
-					end: '+=3000',
-					pin: true
+					end: '+=4000',
+					onEnter: ()=> {
+						animation4.play();
+						animation5.play();
+						animation6.play();
+					}
 				}
 			})
-			.add('arhieve-move')
-			.to(playhead1, {
-				frame: 58,
-				ease: "power2.in",
-				duration: 3,
-				onUpdate: (a,b,c) => {
-					animation5.goToAndStop(playhead1.frame, true)
-					animation6.goToAndStop(playhead1.frame, true)
-				},
-			}, 'arhieve-move')
-			.to(playhead2, {
-				frame: 148,
-				duration: 3,
-				onUpdate: (a,b,c) => {
-					animation4.goToAndStop(playhead2.frame, true)
-				},
-			}, 'arhieve-move')
+
+			const section = gsap.utils.toArray('#meet-section')[0]
+			ScrollTrigger.create({
+				trigger: section,
+				start: "top bottom-=1",
+				end: "bottom top+=1",
+				onEnter: () => this.goToSection(section),
+				onEnterBack: () => this.goToSection(section)
+			});
+
+			const section1 = gsap.utils.toArray('#world-section')[0]
+			ScrollTrigger.create({
+				trigger: section1,
+				start: "top bottom-=1",
+				end: "bottom top+=1",
+				onEnter: () => this.goToSection(section1),
+				onEnterBack: () => this.goToSection(section1)
+			});
+			
+			// const section2 = gsap.utils.toArray('#achieve-section')[0]
+			// ScrollTrigger.create({
+			// 	trigger: section2,
+			// 	start: "top bottom-=1",
+			// 	end: "bottom top+=1",
+			// 	onEnter: () => this.goToSection(section2, 80),
+			// 	onEnterBack: () => this.goToSection(section2, 80)
+			// });
 
 			gsap.timeline({
 				scrollTrigger: {
@@ -407,26 +438,32 @@
 		},
 
 	methods: {
-        goToSection (top) {
-			let observer = ScrollTrigger.normalizeScroll(true);
-			console.log('goTo', top);
-			this.scrollTween = gsap.to(window, {
-				scrollTo: {y: top, autoKill: false},
-				ease: "strong.inOut",
-				duration: 1,
-				onStart: () => {
-					observer.disable(); // for touch devices, as soon as we start forcing scroll it should stop any current touch-scrolling, so we just disable() and enable() the normalizeScroll observer
-					observer.enable();
-				},
-				onComplete: () => this.scrollTween = null,
-				overwrite: true
-			});
-        },
-        getTopPosition (el, idx) {
-            // return (idx - 1) * window.innerHeight;
-            // if (el.parentElement.classList.contains('pin-spacer')) return el.parentElement.getBoundingClientRect().top + window.scrollY;
-            return el.getBoundingClientRect().top + window.scrollY;
-        },
+        goToSection(section, mt, i) {
+			if (this.scrolling.enabled && !this.isNavClicked) { // skip if a scroll tween is in progress
+				this.disable();
+				gsap.to(window, {
+					scrollTo: {y: section, autoKill: false},
+					onComplete: this.enable,
+					duration: 1
+				});
+
+				// anim && anim.restart();
+			}
+		},
+		disable() {
+			if (this.scrolling.enabled) {
+				this.scrolling.enabled = false;
+				window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+				this.scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, this.scrolling.prevent, {passive: false}));
+			}
+		},
+		enable() {
+			if (!this.scrolling.enabled) {
+				this.scrolling.enabled = true;
+				window.removeEventListener("scroll", gsap.ticker.tick);
+				this.scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, this.scrolling.prevent));
+			}
+		}
     }
   };
   

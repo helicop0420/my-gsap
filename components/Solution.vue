@@ -24,6 +24,9 @@
                                 <p class="font-grey solution-text-2" style=" padding-top: 30px; padding-left: 50px; margin-top: 80px;"><sup>◊</sup>Compared to equivalent available sizes of Passeo<sup>®</sup>-14 and Passeo<sup>®</sup>-18 PTA balloons</p>
                             </div>
                         </div>
+                        <div class="delay-temp" style="opacity: 0; top: 0; position: absolute;">
+                            aaa
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,7 +158,7 @@
                 start: 'center center',
                 scrub: true,
                 pin: true,
-                end: '+=9000'
+                end: '+=8000'
             }
         })
         .to('.solution .solution-box-1', {scale: 0.6, duration: 6})
@@ -166,27 +169,18 @@
         .to(panels, {
             xPercent: -100 * ( panels.length - 1 ),
             duration: 10,
+            onComplete: ()=> {
+                animation3.play();
+                animation2.play();
+                gsap.to('.solution-text', {marginTop: 0, duration: 6}, 'lottie')
+                gsap.to('.solution-text-1', {opacity: 1, duration: 6}, 'lottie')
+                gsap.to('.solution-text-2', {opacity: 1, duration: 6}, 'lottie')
+            }
         }, 'move')
-        .add('lottie')
-        .to(playhead, {
-            frame: 58,
-            ease: "power2.in",
-            duration: 4,
-            onUpdate: (a,b,c) => {
-                animation3.goToAndStop(playhead.frame, true)
-            },
-        },'lottie')
-        .to(playhead1, {
-            frame: 59,
-            ease: "power2.in",
-            duration: 4,
-            onUpdate: (a,b,c) => {
-                animation2.goToAndStop(playhead1.frame, true)
-            },
-        },'lottie')
-        .to('.solution-text', {marginTop: 0, duration: 6}, 'lottie')
-        .to('.solution-text-1', {opacity: 1, duration: 6}, 'lottie')
-        .to('.solution-text-2', {opacity: 1, duration: 6}, 'lottie')
+        // .to('.solution-text', {marginTop: 0, duration: 6}, 'lottie')
+        // .to('.solution-text-1', {opacity: 1, duration: 6}, 'lottie')
+        // .to('.solution-text-2', {opacity: 1, duration: 6}, 'lottie')
+        .to('.delay-temp', {top: '-100vh', duration: 3})
         // .to(playhead1, {
         //     frame: 58,
         //     ease: "none",

@@ -154,22 +154,64 @@
   
     data() {
       return {
-       
+        scrolling : {
+          enabled: true,
+          events: "scroll,wheel,touchmove,pointermove".split(","),
+          prevent: e => e.preventDefault(),			
+        },
         loading: false,
         loaded: false
       };
+    },
+    computed:{
+      isNavClicked(){
+        return this.$store.state.isNavClicked
+      },
     },
     mounted() {
       setTimeout(() => {
         this.loaded = true;
       }, 100)
+      const section = gsap.utils.toArray('#contact-wrapper')[0]
+			ScrollTrigger.create({
+				trigger: section,
+				start: "top bottom-=1",
+				end: "bottom top+=1",
+				onEnter: () => this.goToSection(section),
+				onEnterBack: () => this.goToSection(section)
+			});
     },
     
     watch: {
   
     },
     methods: {
-  
+      goToSection(section, anim, i) {
+        if (this.scrolling.enabled && !this.isNavClicked) { // skip if a scroll tween is in progress
+          this.disable();
+          gsap.to(window, {
+            scrollTo: {y: section, autoKill: false},
+            onComplete: this.enable,
+            duration: 1
+          });
+
+          // anim && anim.restart();
+        }
+      },
+      disable() {
+        if (this.scrolling.enabled) {
+          this.scrolling.enabled = false;
+          window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+          this.scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, this.scrolling.prevent, {passive: false}));
+        }
+      },
+      enable() {
+        if (!this.scrolling.enabled) {
+          this.scrolling.enabled = true;
+          window.removeEventListener("scroll", gsap.ticker.tick);
+          this.scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, this.scrolling.prevent));
+        }
+      }
     }
   
     

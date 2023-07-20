@@ -40,7 +40,7 @@
 				<div class="second-marker-title" style="margin-right: 71px;">Balloon markers</div>
 				<div class="second-marker-content flex" style="align-items: end;">
 					Markers on distal balloon shoulder<br/>
-					and every 60 mm aid accurate<br/>
+					and every 60 mm* aid accurate<br/>
 					balloon-to-lesion measurement<p style="font-size: 13px; margin-bottom: 8px; margin-left: -26px;">2</p>
 				</div>
 			</div>
@@ -110,18 +110,18 @@
 		position: absolute;
 		color: white;
 		width: 50vw;
-		bottom: 15vh;
+		bottom: 12vh;
 		opacity: 0;
 	}
 	.pta-text-1 {
-		font-size: 40px;
-		line-height: 42px;
-		margin-bottom: 10px;
+		font-size: 46px;
+		line-height: 48px;
+		margin-bottom: 20px;
 	}
 
 	.pta-text-2 {
-		font-size: 32px;
-		line-height: 34px;
+		font-size: 37px;
+		line-height: 40px;
 	}
 
 	.metal-section-temp {
@@ -241,8 +241,19 @@ export default {
 	components: { adjustSVG, restoreSVG },
 
 	data() {
-			return {
-			};
+		return {
+			scrolling : {
+				enabled: true,
+				events: "scroll,wheel,touchmove,pointermove".split(","),
+				prevent: e => e.preventDefault(),			
+			},
+			
+		};
+	},
+	computed:{
+		isNavClicked(){
+			return this.$store.state.isNavClicked
+		},
 	},
 	mounted() {       
 		let playhead = {frame: 0}
@@ -254,6 +265,16 @@ export default {
                 autoplay: false,
                 path: 'https://assets1.lottiefiles.com/packages/lf20_2xrsDhrCLE.json'
             });  
+
+		const section = gsap.utils.toArray('#adjust-wrapper')[0]
+		ScrollTrigger.create({
+			trigger: section,
+			start: "top bottom-=1",
+			end: "bottom top+=1",
+			onEnter: () => this.goToSection(section),
+			onEnterBack: () => this.goToSection(section)
+		});
+
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: '.pta-section',
@@ -264,7 +285,7 @@ export default {
 			}
 		})
 		.add('image-up')
-		.to(".img-panel", {top: '-24vw', duration: 2}, "image-up")
+		.to(".img-panel", {top: '-22vw', duration: 2}, "image-up")
 		.to(".pta-text", {opacity: 1, duration: 2}, "image-up")
 		.to(".pta-section", {top: '-100vh', opacity: 0, delay:2, duration: 10})
 
@@ -272,31 +293,25 @@ export default {
 			scrollTrigger: {
 				trigger: '.metal-section',
 				start: 'top top',
-				end: '+=9000',
+				end: '+=11000',
 				scrub: true,
 				pin: true,
-				// ease: gsap.Power3.easeOut
 			}
 		})
-		.to(".first-marker", {opacity:1, duration: 3, delay: 30})
+		.to(".first-marker", {opacity:1, duration: 5, delay: 30})
 		.add("ballon-move-1")
-		.to(".first-marker", {x: '-250vw', duration: 12, delay:2}, "ballon-move-1")
-		.to(".img-ballon", {x: '-250vw', duration: 12, delay: 2}, "ballon-move-1")
+		.to(".first-marker", {x: '-250vw', duration: 16, delay: 20}, "ballon-move-1")
+		.to(".img-ballon", {x: '-250vw', duration: 16, delay: 20}, "ballon-move-1")
 		.add("text-show")
-		.to(".second-marker", {opacity: 1, duration: 3}, "text-show")
-		.to(".third-marker", {opacity: 1, left: '2vw', duration: 3}, "text-show")
+		.to(".second-marker", {opacity: 1, duration: 5}, "text-show")
+		.to(".third-marker", {opacity: 1, left: '2vw', duration: 5}, "text-show")
 		.add("ballon-move-2")
-		.to(".second-marker", {x: '150px', opacity:0, duration: 6, delay: 2}, "ballonmove-2")
-		.to(".third-marker", {opacity:0, left: 0,  duration: 6, delay: 2}, "ballonmove-2")
-		.to(".img-ballon", {top: '20%', width: '115vw', height: '16vw', duration: 6, x: 0, delay:2, opacity: 1}, "ballonmove-2")
-		.to(".adjust-content", {opacity:1, duration: 3})
-		.to(playhead1, {
-            frame: 148,
-			duration: 26,
-            onUpdate: (a,b,c) => {
-                animation3.goToAndStop(playhead1.frame, true)
-            },
-        })
+		.to(".second-marker", {x: '150px', opacity:0, duration: 6, delay: 10}, "ballonmove-2")
+		.to(".third-marker", {opacity:0, left: 0,  duration: 6, delay: 10}, "ballonmove-2")
+		.to(".img-ballon", {top: '20%', width: '115vw', height: '16vw', duration: 6, x: 0, delay:10, opacity: 1}, "ballonmove-2")
+		.to(".adjust-content", {opacity:1, duration: 3, onComplete: ()=> {
+			animation3.play()
+		}})
 
 		Draggable.create('#img-slider', {
 			type: 'x',
@@ -309,7 +324,35 @@ export default {
 				
 			}
 		})
-	}
+	},
+	methods: {
+		goToSection(section, anim, i) {
+			if (this.scrolling.enabled && !this.isNavClicked) { // skip if a scroll tween is in progress
+				this.disable();
+				gsap.to(window, {
+					scrollTo: {y: section, autoKill: false},
+					onComplete: this.enable,
+					duration: 1
+				});
+
+				// anim && anim.restart();
+			}
+		},
+		disable() {
+			if (this.scrolling.enabled) {
+				this.scrolling.enabled = false;
+				window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+				this.scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, this.scrolling.prevent, {passive: false}));
+			}
+		},
+		enable() {
+			if (!this.scrolling.enabled) {
+				this.scrolling.enabled = true;
+				window.removeEventListener("scroll", gsap.ticker.tick);
+				this.scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, this.scrolling.prevent));
+			}
+		}
+    }
 };
 
 
